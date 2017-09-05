@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div class="container" align="center">
+            <h1>Melhor que o Google Tradutor</h1>
+        </div>
+
+        <br><br>
+
+        <form action="/" method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="textoEntrada">Texto a ser traduzido</label>
+                    </div>
+                    <div class="col-3">
+                        <label for="origem">Origem :</label>
+
+                        <select name = "idiomaOrigem">
+                            <option value="en">Inglês</option>
+                            <option value="pt">Português</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-2"></div>
+
+                    <div class="col-2">
+                        <label>Texto traduzido</label>
+                    </div>
+                    <div class="col-3">
+                        <label>Saida :</label>
+                        <select name="idiomaSaida">
+                            <option value="en">Inglês</option>
+                            <option value="pt">Português</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-5">
+                       <textarea class="form-control" id="entrada" name="entrada" rows="6"><%= info.entrada %></textarea>
+                    </div>
+
+                    <div class="col-2" align="center">
+                        <button type="submit" class="btn btn-primary">Traduzir</button>
+                    </div>
+
+                    <div class="col-5">
+                        <textarea class="form-control" id="saida" name="saida" rows="6"><%= info.saida %></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </body>
+</html>
