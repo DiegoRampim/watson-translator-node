@@ -10,10 +10,7 @@ function Watson() {}
 
 Watson.prototype.traduz = function (item, callback) {
 
-   language_translator.translate({text: item.entrada, source : item.idiomaOrigem, target: item.idiomaSaida}, callback);
-
-   console.log("Callback: " + callback);
-
+    language_translator.translate({text: item.entrada, source : item.idiomaOrigem, target: item.idiomaSaida}, callback);
 
 }
 

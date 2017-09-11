@@ -5,10 +5,17 @@
     <body>
 
         <div class="container" align="center">
-            <h1>Melhor que o Google Tradutor</h1>
+            <h1>tradu<strong>Watson</strong></h1>
         </div>
 
         <br><br>
+
+        <%if(info.erro){%>
+            <div class="alert alert-danger container" role="alert">
+                <%= info.erro %>
+            </div>
+        <%}%>
+
 
         <form action="/" method="post">
             <div class="container">
@@ -20,8 +27,37 @@
                         <label for="origem">Origem :</label>
 
                         <select name = "idiomaOrigem">
-                            <option value="en">Inglês</option>
-                            <option value="pt">Português</option>
+
+                            <% if(info.idiomaOrigem == "en"){%>
+                                <option selected value="en">Inglês</option>
+                            <%}else{%>
+                                <option value="en">Inglês</option>
+                            <%}%>
+
+                            <% if(info.idiomaOrigem == "pt"){%>
+                                <option selected value="pt">Português</option>
+                            <%}else{%>
+                                <option value="pt">Português</option>
+                            <%}%>
+
+                            <% if(info.idiomaOrigem == "fr"){%>
+                                <option selected value="fr">Francês</option>
+                            <%}else{%>
+                                <option value="fr">Francês</option>
+                            <%}%>
+
+                            <% if(info.idiomaOrigem == "es"){%>
+                                <option selected value="es">Espanhol</option>
+                            <%}else{%>
+                                <option value="es">Espanhol</option>
+                            <%}%>
+
+                            <% if(info.idiomaOrigem == "ar"){%>
+                                <option selected value="ar">Árabe</option>
+                            <%}else{%>
+                                <option value="ar">Árabe</option>
+                            <%}%>
+
                         </select>
 
                     </div>
@@ -34,8 +70,37 @@
                     <div class="col-3">
                         <label>Saida :</label>
                         <select name="idiomaSaida">
-                            <option value="en">Inglês</option>
-                            <option value="pt">Português</option>
+
+                            <% if(info.idiomaSaida == "pt"){%>
+                                <option selected value="pt">Português</option>
+                            <%}else{%>
+                                <option value="pt">Português</option>
+                            <%}%>
+
+                            <% if(info.idiomaSaida== "en"){%>
+                                <option selected value="en">Inglês</option>
+                            <%}else{%>
+                                <option value="en">Inglês</option>
+                            <%}%>
+
+                            <% if(info.idiomaSaida == "fr"){%>
+                                <option selected value="fr">Francês</option>
+                            <%}else{%>
+                                <option value="fr">Francês</option>
+                            <%}%>
+
+                            <% if(info.idiomaSaida == "es"){%>
+                                <option selected value="es">Espanhol</option>
+                            <%}else{%>
+                                <option value="es">Espanhol</option>
+                            <%}%>
+
+                            <% if(info.idiomaSaida == "ar"){%>
+                                <option selected value="ar">Árabe</option>
+                            <%}else{%>
+                                <option value="ar">Árabe</option>
+                            <%}%>
+
                         </select>
                     </div>
                 </div>
@@ -59,5 +124,21 @@
             </div>
 
         </form>
+
+        <br><br>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+                    <a href="https://www.linkedin.com/in/diego-luiz-ornelas-rampim-b76aa0ab/"
+                          class="text-muted">developer by <strong>Diego Rampim</strong></a>
+                </div>
+                <div class="col-5" align="right">
+                    <a href="https://www.ibm.com/watson/services/language-translator/"
+                          class="text-muted">powered by <strong>IBM WATSON - Language Translator</strong></a>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>

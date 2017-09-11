@@ -7,26 +7,82 @@ module.exports = function (app) {
     app.post('/', function (req, res) {
 
         var item = req.body;
+        var preTraducao;
 
-        console.log(item);
+        var idiomaSaida = item.idiomaSaida;
+        var entrada = item.entrada;
+        var idiomaOrigem= item.idiomaOrigem;
 
-        var watson = new app.infra.Watson();
+        if(item.idiomaOrigem != "en" && item.idiomaSaida != "en"){
 
-        watson.traduz(item, function (err, results) {
+            var watsonFiltro = new app.infra.Watson();
 
-            var teste = JSON.stringify(results.translations[0].translation);
+            var subItem = item;
 
-            console.log("translations: " + teste);
+            subItem.idiomaSaida = "en";
 
-            item.saida = teste;
+            watsonFiltro.traduz(subItem, function (err, results) {
 
-            console.log("ITEM: " + JSON.stringify(item));
+                if (!err) {
 
-            res.render('home/index', {info : item});
+                    preTraducao = results.translations[0].translation;
 
-        });
+                    item.entrada = preTraducao;
+                    item.idiomaOrigem = "en";
+                    item.idiomaSaida = idiomaSaida;
+
+                    watsonFiltro.traduz(item, function (err, results) {
+
+                        if(!err){
+                            var teste = results.translations[0].translation;
+
+                            item.entrada = entrada;
+                            item.idiomaOrigem = idiomaOrigem;
+                            item.saida = teste;
+                            item.erro = null;
+
+                            res.render('home/index', {info : item});
+                            return;
+                        }
+
+
+
+                        console.log("Erro traducao: " + err);
+                        item.saida = "";
+                        item.entrada = "";
+                        item.erro = "Não foi possivel realizar a tradução";
+
+                        res.render('home/index', {info : item});
+
+                    });
+                }
+            });
+        }else{
+
+            var watson = new app.infra.Watson();
+
+            watson.traduz(item, function (err, results) {
+
+                if(!err){
+                    var retorno = results.translations[0].translation;
+
+                    item.saida = retorno;
+                    item.erro = null;
+
+                    res.render('home/index', {info : item});
+                    return;
+                }
+
+                console.log("Erro traducao: " + err);
+                item.saida = "";
+                item.entrada = "";
+                item.erro = "Não foi possivel realizar a tradução";
+
+                res.render('home/index', {info : item});
+
+            });
+
+        }
 
     });
-
-
 }
