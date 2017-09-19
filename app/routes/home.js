@@ -45,8 +45,6 @@ module.exports = function (app) {
                             return;
                         }
 
-
-
                         console.log("Erro traducao: " + err);
                         item.saida = "";
                         item.entrada = "";
